@@ -295,142 +295,58 @@
     <p>&copy; 2026 GeoVision Portfolio. Developed for Geospatial Innovations.</p>
   </footer>
 
-<script>
-  const defaultSkills = [
-    { name: 'ArcGIS Pro', category: 'gis' },
-    { name: 'Python (Pandas & GeoPandas)', category: 'programming' },
-    { name: 'PostgreSQL / PostGIS', category: 'programming' },
-    { name: 'Remote Sensing & Satellite Data', category: 'gis' },
-    { name: 'QGIS', category: 'gis' },
-    { name: 'Spatial Analysis', category: 'spatial_analysis' }
-  ];
-
-  const defaultResearch = [
-    {
-      title: 'Spatial Analysis of Population Density & Nighttime Lights in Casablanca',
-      abstract: 'Undergraduate thesis evaluating district-level electrification patterns, land use dynamics, and demographic changes using satellite observations.',
-      tools: 'QGIS • Python • Remote Sensing',
-      link: 'https://nres.illinois.edu/academics/graduate-degrees/master-science-natural-resources-and-environmental-sciences'
-    },
-    {
-      title: 'Population Density',
-      abstract: 'The graduate program develops you into a researcher. Coursework is no longer the primary focus, and you learn how to create, plan, and carry out independent research.',
-      tools: 'SAS Planet • Python • ArcMap',
-      link: 'https://docs.google.com/document/d/e/2PACX-1vSzfyfe2fIuhVWoWtZ8uwBd62NaDadg7fAYA8j1h6Nx42t8y9MUo02HEbAhXUWgW2poGGNcUrEpHyg_/pub'
-    }
-  ];
-
-  const defaultCerts = [
-    {
-      title: 'GIS Specialization Certificate',
-      issuer: 'Esri / University Partner',
-      date: '2025',
-      imgPath: 'assets/cert1.jpg',
-      certUrl: 'https://images.bannerbear.com/direct/4mGpW3zwrxA1K0AxQw/requests/000/155/811/749/aMBJ5DWdLYPXORpRYXRNjrp4Z/21ed8968568722387764f385fa270b80e0d2b94e.pdf'
-    }
-  ];
-
-  const categoryIcons = {
-    'gis': 'fa-solid fa-earth-americas',
-    'spatial_analysis': 'fa-solid fa-chart-pie',
-    'geography': 'fa-solid fa-map-location',
-    'programming': 'fa-solid fa-code',
-    'ai_gis': 'fa-solid fa-brain',
-    'cartography': 'fa-solid fa-layer-group'
-  };
-
-  const categoryLabels = {
-    'gis': 'GIS & Remote Sensing',
-    'spatial_analysis': 'Spatial Analysis',
-    'geography': 'Geography',
-    'programming': 'Data Science & Code',
-    'ai_gis': 'AI & Spatial ML',
-    'cartography': 'Cartography'
-  };
-
-  function renderStats() {
-    const stats = [
-      { label: 'University Level', value: '3rd Year' },
-      { label: 'GIS Projects', value: '12+' },
-      { label: 'Certifications', value: '5+' },
-      { label: 'Tech Tools', value: '8+' }
+  <script>
+    const defaultSkills = [
+      { name: 'ArcGIS Pro', category: 'gis' },
+      { name: 'Python (Pandas & GeoPandas)', category: 'programming' },
+      { name: 'PostgreSQL / PostGIS', category: 'programming' },
+      { name: 'Remote Sensing & Satellite Data', category: 'gis' },
+      { name: 'QGIS', category: 'gis' },
+      { name: 'Spatial Analysis', category: 'spatial_analysis' }
     ];
-    const container = document.getElementById('sec-view-stats');
-    if (container) {
-      container.innerHTML = stats.map(s => `
-        <div class="stat-box">
-          <h2>${s.value}</h2>
-          <p>${s.label}</p>
-        </div>
-      `).join('');
-    }
-  }
 
-  function renderSkills() {
-    const grid = document.getElementById('viewSkillsGrid');
-    if (!grid) return;
-    grid.innerHTML = defaultSkills.map(s => {
-      let iconHTML = `<i class="${categoryIcons[s.category] || 'fa-solid fa-code'}"></i>`;
-      const nameLower = (s.name || '').toLowerCase();
-      
-      if (nameLower.includes('qgis')) iconHTML = `<i class="devicon-qgis-plain colored"></i>`;
-      else if (nameLower.includes('python')) iconHTML = `<i class="devicon-python-plain colored"></i>`;
-      else if (nameLower.includes('postgres')) iconHTML = `<i class="devicon-postgresql-plain colored"></i>`;
+    const defaultResearch = [
+      {
+        title: 'Spatial Analysis of Population Density & Nighttime Lights in Casablanca',
+        abstract: 'Undergraduate thesis evaluating district-level electrification patterns, land use dynamics, and demographic changes using satellite observations.',
+        tools: 'QGIS • Python • Remote Sensing',
+        link: 'https://nres.illinois.edu/academics/graduate-degrees/master-science-natural-resources-and-environmental-sciences'
+      },
+      {
+        title: 'Population Density',
+        abstract: 'The graduate program develops you into a researcher. Coursework is no longer the primary focus, and you learn how to create, plan, and carry out independent research.',
+        tools: 'SAS Planet • Python • ArcMap',
+        link: 'https://docs.google.com/document/d/e/2PACX-1vSzfyfe2fIuhVWoWtZ8uwBd62NaDadg7fAYA8j1h6Nx42t8y9MUo02HEbAhXUWgW2poGGNcUrEpHyg_/pub'
+      }
+    ];
 
-      return `
-        <div class="geo-card">
-          <div class="card-icon">${iconHTML}</div>
-          <h3 class="card-title">${s.name}</h3>
-          <span class="card-tag">${categoryLabels[s.category] || s.category}</span>
-        </div>
-      `;
-    }).join('');
-  }
+    const defaultCerts = [
+      {
+        title: 'GIS Specialization Certificate',
+        issuer: 'Esri / University Partner',
+        date: '2025',
+        imgPath: 'assets/cert1.jpg',
+        certUrl: 'https://images.bannerbear.com/direct/4mGpW3zwrxA1K0AxQw/requests/000/155/811/749/aMBJ5DWdLYPXORpRYXRNjrp4Z/21ed8968568722387764f385fa270b80e0d2b94e.pdf'
+      }
+    ];
 
-  function renderResearch() {
-    const grid = document.getElementById('viewResearchGrid');
-    if (!grid) return;
-    grid.innerHTML = defaultResearch.map(r => `
-      <div class="geo-card" style="display: flex; flex-direction: column;">
-        <div class="card-icon"><i class="fa-solid fa-microscope"></i></div>
-        <h3 class="card-title">${r.title}</h3>
-        <p class="card-desc">${r.abstract}</p>
-        <span class="card-tag" style="margin-bottom: 15px;"><i class="fa-solid fa-wrench"></i> ${r.tools}</span>
-        <a href="${r.link}" target="_blank" class="btn btn-outline" style="margin-top: auto; align-self: flex-start; font-size: 0.85rem; padding: 6px 14px; text-decoration: none;">
-          <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Article
-        </a>
-      </div>
-    `).join('');
-  }
+    const categoryIcons = {
+      'gis': 'fa-solid fa-earth-americas',
+      'spatial_analysis': 'fa-solid fa-chart-pie',
+      'geography': 'fa-solid fa-map-location',
+      'programming': 'fa-solid fa-code',
+      'ai_gis': 'fa-solid fa-brain',
+      'cartography': 'fa-solid fa-layer-group'
+    };
 
-  function renderCerts() {
-    const grid = document.getElementById('viewCertsGrid');
-    if (!grid) return;
-    grid.innerHTML = defaultCerts.map(c => `
-      <div class="cert-card">
-        <div class="cert-img-wrapper">
-          <img src="${c.imgPath}" alt="${c.title}" onerror="this.src='https://via.placeholder.com/400x250?text=Certificate+Image'">
-        </div>
-        <div class="cert-body">
-          <h3 class="cert-title">${c.title}</h3>
-          <p class="cert-issuer">${c.issuer}</p>
-          <span class="cert-date"><i class="fa-regular fa-calendar-days"></i> ${c.date || ''}</span>
-          <a href="${c.certUrl || c.imgPath}" target="_blank" class="btn btn-outline cert-link-btn">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate
-          </a>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  // تشغيل مباشر بعد فتح الصفحة
-  window.onload = function() {
-    renderStats();
-    renderSkills();
-    renderResearch();
-    renderCerts();
-  };
-</script>
+    const categoryLabels = {
+      'gis': 'GIS & Remote Sensing',
+      'spatial_analysis': 'Spatial Analysis',
+      'geography': 'Geography',
+      'programming': 'Data Science & Code',
+      'ai_gis': 'AI & Spatial ML',
+      'cartography': 'Cartography'
+    };
 
     function renderStats() {
       const stats = [
@@ -440,16 +356,19 @@
         { label: 'Tech Tools', value: '8+' }
       ];
       const container = document.getElementById('sec-view-stats');
-      container.innerHTML = stats.map(s => `
-        <div class="stat-box">
-          <h2>${s.value}</h2>
-          <p>${s.label}</p>
-        </div>
-      `).join('');
+      if (container) {
+        container.innerHTML = stats.map(s => `
+          <div class="stat-box">
+            <h2>${s.value}</h2>
+            <p>${s.label}</p>
+          </div>
+        `).join('');
+      }
     }
 
     function renderSkills() {
       const grid = document.getElementById('viewSkillsGrid');
+      if (!grid) return;
       grid.innerHTML = defaultSkills.map(s => {
         let iconHTML = `<i class="${categoryIcons[s.category] || 'fa-solid fa-code'}"></i>`;
         const nameLower = (s.name || '').toLowerCase();
@@ -470,18 +389,23 @@
 
     function renderResearch() {
       const grid = document.getElementById('viewResearchGrid');
+      if (!grid) return;
       grid.innerHTML = defaultResearch.map(r => `
-        <div class="geo-card">
+        <div class="geo-card" style="display: flex; flex-direction: column;">
           <div class="card-icon"><i class="fa-solid fa-microscope"></i></div>
           <h3 class="card-title">${r.title}</h3>
           <p class="card-desc">${r.abstract}</p>
-          <span class="card-tag"><i class="fa-solid fa-wrench"></i> ${r.tools}</span>
+          <span class="card-tag" style="margin-bottom: 15px;"><i class="fa-solid fa-wrench"></i> ${r.tools}</span>
+          <a href="${r.link}" target="_blank" class="btn btn-outline" style="margin-top: auto; align-self: flex-start; font-size: 0.85rem; padding: 6px 14px; text-decoration: none;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Article
+          </a>
         </div>
       `).join('');
     }
 
     function renderCerts() {
       const grid = document.getElementById('viewCertsGrid');
+      if (!grid) return;
       grid.innerHTML = defaultCerts.map(c => `
         <div class="cert-card">
           <div class="cert-img-wrapper">
@@ -498,6 +422,13 @@
         </div>
       `).join('');
     }
+
+    window.onload = function() {
+      renderStats();
+      renderSkills();
+      renderResearch();
+      renderCerts();
+    };
   </script>
 </body>
 </html>

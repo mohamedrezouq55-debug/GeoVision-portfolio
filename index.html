@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeoVision - Geospatial Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Devicon Library for QGIS & GIS/Tech Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #ffffff;
+      --primary-cyan: #00b4d8;
+      --cyan-hover: #0096c7;
+      --text-dark: #0f172a;
+      --text-gray: #64748b;
+      --border-color: #e2e8f0;
+      --bg-light: #f8fafc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+    header {
+      background-color: var(--bg-dark);
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .logo { font-size: 1.5rem; font-weight: 800; color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .logo i { color: var(--primary-cyan); }
+    nav ul { display: flex; list-style: none; gap: 25px; }
+    nav a { color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
+    nav a:hover { color: var(--primary-cyan); }
+
+    .hero {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+      color: white;
+      padding: 100px 8% 80px;
+      text-align: center;
+    }
+
+    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: #ffffff; }
+    .hero p { font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto 30px; }
+
+    .stats-banner {
+      background: white;
+      margin: -40px 8% 60px;
+      padding: 30px;
+      border-radius: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .stat-box h2 { font-size: 2.2rem; color: var(--primary-cyan); font-weight: 800; }
+    .stat-box p { color: var(--text-gray); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    section { padding: 60px 8%; }
+    .section-title { text-align: center; font-size: 2.2rem; font-weight: 800; margin-bottom: 40px; color: var(--text-dark); }
+
+    .about-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      border: 1px solid var(--border-color);
+    }
+
+    .about-img-container {
+      width: 280px;
+      height: 320px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--border-color);
+    }
+
+    .about-img-container img { width: 100%; height: 100%; object-fit: cover; }
+    .about-content { flex: 1; }
+    .about-content h2 { font-size: 2rem; margin-bottom: 20px; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 25px; }
+    .info-item { background: var(--bg-light); padding: 12px 18px; border-radius: 10px; border-left: 4px solid var(--primary-cyan); }
+    .info-item label { font-size: 0.75rem; color: var(--text-gray); font-weight: 700; text-transform: uppercase; display: block; }
+    .info-item span { font-weight: 700; font-size: 0.95rem; }
+
+    .about-buttons { display: flex; gap: 15px; margin-top: 25px; }
+    .btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; border: none; cursor: pointer; }
+    .btn-primary { background: var(--primary-cyan); color: white; }
+    .btn-primary:hover { background: var(--cyan-hover); }
+    .btn-outline { border: 2px solid var(--border-color); color: var(--text-dark); background: transparent; }
+    .btn-outline:hover { background: var(--bg-light); }
+
+    .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+
+    .geo-card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .geo-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+
+    .card-icon {
+      width: 50px; height: 50px;
+      border-radius: 12px;
+      background: #e0f2fe;
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .card-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+    .card-desc { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; flex: 1; }
+    .card-tag { align-self: flex-start; background: var(--bg-light); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: var(--primary-cyan); }
+
+    /* Interactive Certificate & Research Card Image */
+    .cert-img-wrapper {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      background: #f1f5f9;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .cert-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .cert-img-wrapper:hover img {
+      transform: scale(1.04);
+    }
+
+    .cert-img-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cert-img-wrapper:hover .cert-img-overlay {
+      opacity: 1;
+    }
+
+    /* Modals for Lightbox Views */
+    .custom-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .custom-modal-content {
+      position: relative;
+      max-width: 650px;
+      width: 90%;
+      max-height: 90vh;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .custom-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #f1f5f9;
+      color: var(--text-dark);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .custom-modal-close:hover {
+      background: #ef4444;
+      color: white;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Contact Cards and Layout */
+    .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; }
+    .contact-info-list { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { background: white; padding: 20px; border-radius: 16px; border: 1px solid var(--border-color); display: flex; align-items: center; gap: 20px; }
+    .contact-icon { width: 45px; height: 45px; border-radius: 10px; background: #e0f2fe; color: var(--primary-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+
+    .contact-form { background: white; padding: 30px; border-radius: 16px; border: 1px solid var(--border-color); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+    .contact-form input, .contact-form textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; outline: none; margin-bottom: 15px; }
+
+    footer { background: var(--bg-dark); color: white; text-align: center; padding: 30px; margin-top: 60px; }
+
+    @media (max-width: 768px) {
+      .about-card { flex-direction: column; }
+      .about-img-container { width: 100%; height: 260px; }
+      .contact-container { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo"><i class="fa-solid fa-globe"></i> GeoVision</a>
+    <nav>
+      <ul>
+        <li><a href="#about" id="nav-about">About</a></li>
+        <li><a href="#skills" id="nav-skills">Skills</a></li>
+        <li><a href="#research" id="nav-research">Research</a></li>
+        <li><a href="#projects" id="nav-projects">Projects</a></li>
+        <li><a href="#certifications" id="nav-certs">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="sec-view-hero">
+    <h1 id="viewHeroTitle">Geospatial Analyst & Developer</h1>
+    <p id="viewHeroSubtitle">Transforming spatial data into intelligent maps and interactive geographic web applications.</p>
+  </section>
+
+  <div class="stats-banner" id="sec-view-stats"></div>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-card">
+      <div class="about-img-container" id="viewImgContainer">
+        <i class="fa-solid fa-user-tie" style="font-size: 5rem; color: #cbd5e1;"></i>
+      </div>
+      <div class="about-content">
+        <h2 id="viewGreeting">Hello, I'm Mohamed.</h2>
+        <div class="info-grid">
+          <div class="info-item"><label>University</label><span id="viewUniversity">Hassan II University</span></div>
+          <div class="info-item"><label>Major</label><span id="viewSpecialty">Geomatics & Territorial Dev</span></div>
+          <div class="info-item"><label>Country</label><span id="viewCountry">Morocco</span></div>
+          <div class="info-item"><label>Languages</label><span id="viewLanguages">Arabic • English • French</span></div>
+        </div>
+        <p class="card-desc" id="viewAboutDesc">Passionate about geospatial analysis, remote sensing, and spatial web tools.</p>
+        <div class="about-buttons">
+          <a href="#" id="viewCvBtn" class="btn btn-primary" download><i class="fa-solid fa-download"></i> Download CV</a>
+          <a href="#" id="viewGithub" class="btn btn-outline" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="#" id="viewLinkedin" class="btn btn-outline" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="grid-container" id="viewSkillsGrid"></div>
+  </section>
+
+  <section id="research">
+    <h2 class="section-title">Research & Academic Work</h2>
+    <div class="grid-container" id="viewResearchGrid"></div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Practical Projects</h2>
+    <div class="grid-container" id="viewProjectsGrid"></div>
+  </section>
+
+  <section id="certifications">
+    <h2 class="section-title">Certifications & Awards</h2>
+    <div class="grid-container" id="viewCertsGrid"></div>
+  </section>
+
+  <!-- RESEARCH LIGHTBOX MODAL -->
+  <div id="researchModal" class="custom-modal" onclick="closeResearchModal(event)">
+    <div class="custom-modal-content" onclick="event.stopPropagation()">
+      <div class="custom-modal-close" onclick="closeResearchModal()"><i class="fa-solid fa-xmark"></i></div>
+      <h2 id="rModalTitle" style="font-size:1.5rem; margin-bottom:12px; color:var(--text-dark);"></h2>
+      <div style="margin-bottom:15px;"><span id="rModalTools" class="card-tag"></span></div>
+      <p id="rModalAbstract" style="color:var(--text-gray); font-size:1rem; line-height:1.7; margin-bottom:24px; white-space: pre-line;"></p>
+      <div id="rModalLinkBtn"></div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATE LIGHTBOX MODAL -->
+  <div id="certModal" class="custom-modal" onclick="closeCertModal(event)">
+    <div class="custom-modal-content" style="max-width:800px; padding:15px;" onclick="event.stopPropagation()">
+      <div class="custom-modal-close" onclick="closeCertModal()"><i class="fa-solid fa-xmark"></i></div>
+      <img id="certModalImg" src="" alt="Certificate View" style="max-width:100%; max-height:75vh; object-fit:contain; border-radius:8px;">
+      <div id="certModalTitle" style="margin-top:12px; font-weight:700; font-size:1.1rem; text-align:center;"></div>
+    </div>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-container">
+      <div class="contact-info-list">
+        <p class="card-desc" id="viewContactText" style="margin-bottom:10px;">Feel free to contact me for academic collaboration, GIS consulting, or internship opportunities.</p>
+        
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div><label style="font-size:0.75rem; color:var(--text-gray); font-weight:700;">EMAIL</label><p id="viewContactEmail" style="font-weight:700;">contact@example.com</p></div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div><label style="font-size:0.75rem; color:var(--text-gray); font-weight:700;">PHONE</label><p id="viewContactPhone" style="font-weight:700;">+212 600 000 000</p></div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div><label style="font-size:0.75rem; color:var(--text-gray); font-weight:700;">LOCATION</label><p id="viewContactLocation" style="font-weight:700;">Casablanca, Morocco</p></div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <form action="https://formspree.io/f/xyeggqol" method="POST">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea name="message" rows="4" placeholder="Your Message..." required></textarea>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 GeoVision Portfolio. Developed for Geospatial Innovations.</p>
+  </footer>
+
+  <script>
+    const categoryIcons = {
+      'gis': 'fa-solid fa-earth-americas',
+      'spatial_analysis': 'fa-solid fa-chart-pie',
+      'geography': 'fa-solid fa-map-location',
+      'programming': 'fa-solid fa-code',
+      'ai_gis': 'fa-solid fa-brain',
+      'cartography': 'fa-solid fa-layer-group'
+    };
+
+    const categoryLabels = {
+      'gis': 'GIS & Remote Sensing',
+      'spatial_analysis': 'Spatial Analysis & Statistics',
+      'geography': 'Geography & Territorial Dev',
+      'programming': 'Data Science & Python',
+      'ai_gis': 'AI & Spatial Machine Learning',
+      'cartography': 'Cartography & Web GIS'
+    };
+
+    window.onload = function() {
+      applyVisibility();
+      renderHero();
+      renderAbout();
+      renderStats();
+      renderSkills();
+      renderResearch();
+      renderProjects();
+      renderCerts();
+      renderContact();
+    };
+
+    function applyVisibility() {
+      const vis = JSON.parse(localStorage.getItem('geo_visibility')) || {
+        hero: true, about: true, stats: true, skills: true, research: true, projects: true, certs: true
+      };
+
+      toggleElem('sec-view-hero', vis.hero);
+      toggleElem('about', vis.about);
+      toggleElem('nav-about', vis.about);
+      toggleElem('sec-view-stats', vis.stats);
+      toggleElem('skills', vis.skills);
+      toggleElem('nav-skills', vis.skills);
+      toggleElem('research', vis.research);
+      toggleElem('nav-research', vis.research);
+      toggleElem('projects', vis.projects);
+      toggleElem('nav-projects', vis.projects);
+      toggleElem('certifications', vis.certs);
+      toggleElem('nav-certs', vis.certs);
+    }
+
+    function toggleElem(id, visible) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = (visible === false) ? 'none' : '';
+    }
+
+    function renderHero() {
+      const hero = JSON.parse(localStorage.getItem('geo_hero'));
+      if (hero) {
+        if (hero.title) document.getElementById('viewHeroTitle').innerText = hero.title;
+        if (hero.subtitle) document.getElementById('viewHeroSubtitle').innerText = hero.subtitle;
+      }
+    }
+
+    function renderAbout() {
+      const about = JSON.parse(localStorage.getItem('geo_about'));
+      if (!about) return;
+      if (about.greeting) document.getElementById('viewGreeting').innerText = about.greeting;
+      if (about.university) document.getElementById('viewUniversity').innerText = about.university;
+      if (about.specialty) document.getElementById('viewSpecialty').innerText = about.specialty;
+      if (about.country) document.getElementById('viewCountry').innerText = about.country;
+      if (about.languages) document.getElementById('viewLanguages').innerText = about.languages;
+      if (about.aboutDesc) document.getElementById('viewAboutDesc').innerText = about.aboutDesc;
+
+      if (about.github) document.getElementById('viewGithub').href = about.github;
+      if (about.linkedin) document.getElementById('viewLinkedin').href = about.linkedin;
+      if (about.cv) document.getElementById('viewCvBtn').href = about.cv;
+
+      if (about.img) {
+        document.getElementById('viewImgContainer').innerHTML = `<img src="${about.img}" alt="Profile Image">`;
+      }
+    }
+
+    function renderStats() {
+      const defaultStats = [
+        { label: 'University Level', value: '3rd Year' },
+        { label: 'GIS Projects', value: '12+' },
+        { label: 'Certifications', value: '5+' },
+        { label: 'Tech Tools', value: '8+' }
+      ];
+      const stats = JSON.parse(localStorage.getItem('geo_stats_list')) || defaultStats;
+      const container = document.getElementById('sec-view-stats');
+      if (stats.length === 0) {
+        container.style.display = 'none';
+        return;
+      }
+      container.innerHTML = stats.map(s => `
+        <div class="stat-box">
+          <h2>${s.value}</h2>
+          <p>${s.label}</p>
+        </div>
+      `).join('');
+    }
+
+    /* Updated renderSkills to handle QGIS and Specific Tech Icons automatically */
+    function renderSkills() {
+      const skills = JSON.parse(localStorage.getItem('geo_skills')) || [];
+      const grid = document.getElementById('viewSkillsGrid');
+      if (skills.length === 0) {
+        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-gray);">No skills added yet.</p>`;
+        return;
+      }
+      grid.innerHTML = skills.map(s => {
+        let iconHTML = `<i class="${categoryIcons[s.category] || 'fa-solid fa-code'}"></i>`;
+        
+        const skillNameLower = (s.name || '').toLowerCase().trim();
+        
+        // Smart matching for QGIS and specific software tools
+        if (skillNameLower === 'qgis') {
+          iconHTML = `<i class="devicon-qgis-plain colored"></i>`;
+        } else if (skillNameLower.includes('python')) {
+          iconHTML = `<i class="devicon-python-plain colored"></i>`;
+        } else if (skillNameLower.includes('postgresql') || skillNameLower.includes('postgis')) {
+          iconHTML = `<i class="devicon-postgresql-plain colored"></i>`;
+        }
+
+        const labelText = categoryLabels[s.category] || s.category;
+        return `
+          <div class="geo-card">
+            <div class="card-icon">${iconHTML}</div>
+            <h3 class="card-title">${s.name}</h3>
+            <span class="card-tag">${labelText}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderResearch() {
+      const items = JSON.parse(localStorage.getItem('geo_research')) || [];
+      const grid = document.getElementById('viewResearchGrid');
+      if (items.length === 0) {
+        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-gray);">No research projects added yet.</p>`;
+        return;
+      }
+      grid.innerHTML = items.map((r, i) => `
+        <div class="geo-card" style="cursor:pointer;" onclick="openResearchModal(${i})">
+          <div class="card-icon"><i class="fa-solid fa-microscope"></i></div>
+          <h3 class="card-title">${r.title}</h3>
+          <p class="card-desc">${r.abstract ? (r.abstract.substring(0, 100) + '...') : ''}</p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+            <span class="card-tag"><i class="fa-solid fa-wrench"></i> ${r.tools || 'Research'}</span>
+            <span style="color:var(--primary-cyan); font-weight:700; font-size:0.85rem;">Learn more <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openResearchModal(index) {
+      const items = JSON.parse(localStorage.getItem('geo_research')) || [];
+      const item = items[index];
+      if (!item) return;
+
+      document.getElementById('rModalTitle').innerText = item.title;
+      document.getElementById('rModalTools').innerHTML = `<i class="fa-solid fa-wrench"></i> ${item.tools || 'General Research'}`;
+      document.getElementById('rModalAbstract').innerText = item.abstract || 'No abstract provided.';
+      
+      const linkContainer = document.getElementById('rModalLinkBtn');
+      if (item.link) {
+        linkContainer.innerHTML = `<a href="${item.link}" target="_blank" class="btn btn-primary" style="width:100%; justify-content:center;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Read Full Paper / Article</a>`;
+      } else {
+        linkContainer.innerHTML = '';
+      }
+
+      document.getElementById('researchModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeResearchModal(event) {
+      document.getElementById('researchModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function renderProjects() {
+      const projects = JSON.parse(localStorage.getItem('geo_projects')) || [];
+      const grid = document.getElementById('viewProjectsGrid');
+      if (projects.length === 0) {
+        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-gray);">No practical projects added yet.</p>`;
+        return;
+      }
+      grid.innerHTML = projects.map(p => `
+        <div class="geo-card">
+          <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3 class="card-title">${p.title}</h3>
+          <p class="card-desc">${p.desc}</p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
+            <span class="card-tag">${p.tag}</span>
+            ${p.link ? `<a href="${p.link}" target="_blank" style="color:var(--primary-cyan); font-weight:700; text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Learn more</a>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderCerts() {
+      const certs = JSON.parse(localStorage.getItem('geo_certs')) || [];
+      const grid = document.getElementById('viewCertsGrid');
+      if (certs.length === 0) {
+        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-gray);">No certifications added yet.</p>`;
+        return;
+      }
+      grid.innerHTML = certs.map(c => `
+        <div class="geo-card" style="padding: 20px;">
+          ${c.imgPath 
+            ? `<div class="cert-img-wrapper" onclick="openCertModal('${c.imgPath}', '${c.title.replace(/'/g, "\\'")}')">
+                 <img src="${c.imgPath}" alt="${c.title}">
+                 <div class="cert-img-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+               </div>`
+            : `<div class="card-icon"><i class="fa-solid fa-certificate"></i></div>`
+          }
+          <h3 class="card-title" style="margin-bottom:6px;">${c.title}</h3>
+          <p style="color:var(--primary-cyan); font-weight:700; font-size:0.95rem; margin-bottom:6px;">
+            <i class="fa-solid fa-award"></i> ${c.issuer}
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+            ${c.date ? `<span style="font-size:0.85rem; color:var(--text-gray);"><i class="fa-regular fa-calendar"></i> ${c.date}</span>` : '<span></span>'}
+            ${c.link ? `<a href="${c.link}" target="_blank" style="color:var(--primary-cyan); font-weight:700; font-size:0.85rem; text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Learn more</a>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openCertModal(imgSrc, title) {
+      document.getElementById('certModalImg').src = imgSrc;
+      document.getElementById('certModalTitle').innerText = title;
+      document.getElementById('certModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCertModal(event) {
+      document.getElementById('certModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeCertModal();
+        closeResearchModal();
+      }
+    });
+
+    function renderContact() {
+      const about = JSON.parse(localStorage.getItem('geo_about')) || {};
+      const contact = JSON.parse(localStorage.getItem('geo_contact')) || {};
+
+      if (about.email) document.getElementById('viewContactEmail').innerText = about.email;
+      if (contact.phone) document.getElementById('viewContactPhone').innerText = contact.phone;
+      if (contact.location) document.getElementById('viewContactLocation').innerText = contact.location;
+      if (contact.text) document.getElementById('viewContactText').innerText = contact.text;
+    }
+  </script>
+</body>
+</html>

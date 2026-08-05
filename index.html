@@ -305,21 +305,21 @@
       { name: 'Spatial Analysis', category: 'spatial_analysis' }
     ];
 
-    const defaultResearch = [
-      {
-        title: 'Spatial Analysis of Population Density & Nighttime Lights in Casablanca',
-        abstract: 'Undergraduate thesis evaluating district-level electrification patterns, land use dynamics, and demographic changes using satellite observations.',
-        tools: 'QGIS • Python • Remote Sensing',
-        link: 'https://nres.illinois.edu/academics/graduate-degrees/master-science-natural-resources-and-environmental-sciences'
-      },
-      {
-        title: 'Population Density',
-        abstract: 'The graduate program develops you into a researcher. Coursework is no longer the primary focus, and you learn how to create, plan, and carry out independent research.',
-        tools: 'SAS Planet • Python • ArcMap',
-        link: 'https://docs.google.com/document/d/e/2PACX-1vSzfyfe2fIuhVWoWtZ8uwBd62NaDadg7fAYA8j1h6Nx42t8y9MUo02HEbAhXUWgW2poGGNcUrEpHyg_/pub'
-      }
-    ];
-    // 2. تحديث دالة العرض لتشمل زر "View Article / Read Paper"
+const defaultResearch = [
+    {
+      title: 'Spatial Analysis of Population Density & Nighttime Lights in Casablanca',
+      abstract: 'Undergraduate thesis evaluating district-level electrification patterns, land use dynamics, and demographic changes using satellite observations.',
+      tools: 'QGIS • Python • Remote Sensing', // تم إضافة الفاصلة هنا
+      link: 'https://nres.illinois.edu/academics/graduate-degrees/master-science-natural-resources-and-environmental-sciences'
+    },
+    {
+      title: 'Population Density',
+      abstract: 'The graduate program develops you into a researcher. Coursework is no longer the primary focus, and you learn how to create, plan, and carry out independent research.',
+      tools: 'SAS Planet • Python • ArcMap', // تم إضافة الفاصلة هنا
+      link: 'https://docs.google.com/document/d/e/2PACX-1vSzfyfe2fIuhVWoWtZ8uwBd62NaDadg7fAYA8j1h6Nx42t8y9MUo02HEbAhXUWgW2poGGNcUrEpHyg_/pub'
+    }
+  ];
+
   function renderResearch() {
     const grid = document.getElementById('viewResearchGrid');
     if (!grid) return;
@@ -330,7 +330,6 @@
         <p class="card-desc">${r.abstract}</p>
         <span class="card-tag" style="margin-bottom: 15px;"><i class="fa-solid fa-wrench"></i> ${r.tools}</span>
         
-        <!-- زر فتح المقال/البحث -->
         ${r.link ? `
           <a href="${r.link}" target="_blank" class="btn btn-outline" style="margin-top: auto; align-self: flex-start; font-size: 0.85rem; padding: 6px 14px;">
             <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Article

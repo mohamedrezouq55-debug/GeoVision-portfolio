@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GeoVision - Geospatial Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Devicon Library for QGIS & GIS/Tech Icons -->
+  <!-- Devicon Library for QGIS & Tech Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -144,47 +144,6 @@
     .card-desc { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; flex: 1; }
     .card-tag { align-self: flex-start; background: var(--bg-light); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: var(--primary-cyan); }
 
-    /* Interactive Certificate & Research Card Image */
-    .cert-img-wrapper {
-      width: 100%;
-      height: 180px;
-      overflow: hidden;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      background: #f1f5f9;
-      border: 1px solid var(--border-color);
-      cursor: pointer;
-      position: relative;
-    }
-
-    .cert-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .cert-img-wrapper:hover img {
-      transform: scale(1.04);
-    }
-
-    .cert-img-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .cert-img-wrapper:hover .cert-img-overlay {
-      opacity: 1;
-    }
-
     /* Modals for Lightbox Views */
     .custom-modal {
       display: none;
@@ -197,7 +156,6 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      animation: fadeIn 0.25s ease;
     }
 
     .custom-modal-content {
@@ -216,32 +174,13 @@
 
     .custom-modal-close {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: #f1f5f9;
-      color: var(--text-dark);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
+      top: 15px; right: 15px;
+      background: #f1f5f9; color: var(--text-dark);
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
       cursor: pointer;
-      transition: all 0.2s;
     }
 
-    .custom-modal-close:hover {
-      background: #ef4444;
-      color: white;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Contact Cards and Layout */
     .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; }
     .contact-info-list { display: flex; flex-direction: column; gap: 20px; }
     .contact-item { background: white; padding: 20px; border-radius: 16px; border: 1px solid var(--border-color); display: flex; align-items: center; gap: 20px; }
@@ -268,17 +207,17 @@
     <a href="#" class="logo"><i class="fa-solid fa-globe"></i> GeoVision</a>
     <nav>
       <ul>
-        <li><a href="#about" id="nav-about">About</a></li>
-        <li><a href="#skills" id="nav-skills">Skills</a></li>
-        <li><a href="#research" id="nav-research">Research</a></li>
-        <li><a href="#projects" id="nav-projects">Projects</a></li>
-        <li><a href="#certifications" id="nav-certs">Certifications</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class="hero" id="sec-view-hero">
+  <section class="hero">
     <h1 id="viewHeroTitle">Geospatial Analyst & Developer</h1>
     <p id="viewHeroSubtitle">Transforming spatial data into intelligent maps and interactive geographic web applications.</p>
   </section>
@@ -289,21 +228,22 @@
     <h2 class="section-title">About Me</h2>
     <div class="about-card">
       <div class="about-img-container" id="viewImgContainer">
-        <i class="fa-solid fa-user-tie" style="font-size: 5rem; color: #cbd5e1;"></i>
+        <!-- الصورة الافتراضية الموجهة لمجلد assets -->
+        <img src="assets/profile.jpg" alt="Profile" onerror="this.src='https://via.placeholder.com/280x320?text=Profile+Image'">
       </div>
       <div class="about-content">
         <h2 id="viewGreeting">Hello, I'm Mohamed.</h2>
         <div class="info-grid">
           <div class="info-item"><label>University</label><span id="viewUniversity">Hassan II University</span></div>
-          <div class="info-item"><label>Major</label><span id="viewSpecialty">Geomatics & Territorial Dev</span></div>
+          <div class="info-item"><label>Major</label><span id="viewSpecialty">Geography & GIS</span></div>
           <div class="info-item"><label>Country</label><span id="viewCountry">Morocco</span></div>
           <div class="info-item"><label>Languages</label><span id="viewLanguages">Arabic • English • French</span></div>
         </div>
         <p class="card-desc" id="viewAboutDesc">Passionate about geospatial analysis, remote sensing, and spatial web tools.</p>
         <div class="about-buttons">
-          <a href="#" id="viewCvBtn" class="btn btn-primary" download><i class="fa-solid fa-download"></i> Download CV</a>
-          <a href="#" id="viewGithub" class="btn btn-outline" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-          <a href="#" id="viewLinkedin" class="btn btn-outline" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a href="assets/cv.pdf" id="viewCvBtn" class="btn btn-primary" download><i class="fa-solid fa-download"></i> Download CV</a>
+          <a href="https://github.com" id="viewGithub" class="btn btn-outline" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="https://linkedin.com" id="viewLinkedin" class="btn btn-outline" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
         </div>
       </div>
     </div>
@@ -328,26 +268,6 @@
     <h2 class="section-title">Certifications & Awards</h2>
     <div class="grid-container" id="viewCertsGrid"></div>
   </section>
-
-  <!-- RESEARCH LIGHTBOX MODAL -->
-  <div id="researchModal" class="custom-modal" onclick="closeResearchModal(event)">
-    <div class="custom-modal-content" onclick="event.stopPropagation()">
-      <div class="custom-modal-close" onclick="closeResearchModal()"><i class="fa-solid fa-xmark"></i></div>
-      <h2 id="rModalTitle" style="font-size:1.5rem; margin-bottom:12px; color:var(--text-dark);"></h2>
-      <div style="margin-bottom:15px;"><span id="rModalTools" class="card-tag"></span></div>
-      <p id="rModalAbstract" style="color:var(--text-gray); font-size:1rem; line-height:1.7; margin-bottom:24px; white-space: pre-line;"></p>
-      <div id="rModalLinkBtn"></div>
-    </div>
-  </div>
-
-  <!-- CERTIFICATE LIGHTBOX MODAL -->
-  <div id="certModal" class="custom-modal" onclick="closeCertModal(event)">
-    <div class="custom-modal-content" style="max-width:800px; padding:15px;" onclick="event.stopPropagation()">
-      <div class="custom-modal-close" onclick="closeCertModal()"><i class="fa-solid fa-xmark"></i></div>
-      <img id="certModalImg" src="" alt="Certificate View" style="max-width:100%; max-height:75vh; object-fit:contain; border-radius:8px;">
-      <div id="certModalTitle" style="margin-top:12px; font-weight:700; font-size:1.1rem; text-align:center;"></div>
-    </div>
-  </div>
 
   <!-- CONTACT SECTION -->
   <section id="contact">
@@ -393,6 +313,33 @@
   </footer>
 
   <script>
+    // 1. القواعد والبيانات الافتراضية الثابتة المخزنة داخل الكود ليراها أي زائر من أي جهاز
+    const defaultSkills = [
+      { name: 'QGIS', category: 'gis' },
+      { name: 'ArcGIS Pro', category: 'gis' },
+      { name: 'Python (Pandas & GeoPandas)', category: 'programming' },
+      { name: 'PostgreSQL / PostGIS', category: 'programming' },
+      { name: 'Remote Sensing & Satellite Data', category: 'gis' },
+      { name: 'Spatial Analysis', category: 'spatial_analysis' }
+    ];
+
+    const defaultResearch = [
+      {
+        title: 'Spatial Analysis of Population Density & Nighttime Lights in Casablanca',
+        abstract: 'Undergraduate thesis evaluating district-level electrification patterns, land use dynamics, and demographic changes using satellite observations.',
+        tools: 'QGIS • Python • Remote Sensing'
+      }
+    ];
+
+    const defaultCerts = [
+      {
+        title: 'GIS Specialization Certificate',
+        issuer: 'Esri / University Partner',
+        date: '2025',
+        imgPath: 'assets/cert1.jpg'
+      }
+    ];
+
     const categoryIcons = {
       'gis': 'fa-solid fa-earth-americas',
       'spatial_analysis': 'fa-solid fa-chart-pie',
@@ -404,89 +351,28 @@
 
     const categoryLabels = {
       'gis': 'GIS & Remote Sensing',
-      'spatial_analysis': 'Spatial Analysis & Statistics',
-      'geography': 'Geography & Territorial Dev',
-      'programming': 'Data Science & Python',
-      'ai_gis': 'AI & Spatial Machine Learning',
-      'cartography': 'Cartography & Web GIS'
+      'spatial_analysis': 'Spatial Analysis',
+      'geography': 'Geography',
+      'programming': 'Data Science & Code',
+      'ai_gis': 'AI & Spatial ML',
+      'cartography': 'Cartography'
     };
 
     window.onload = function() {
-      applyVisibility();
-      renderHero();
-      renderAbout();
       renderStats();
       renderSkills();
       renderResearch();
-      renderProjects();
       renderCerts();
-      renderContact();
     };
 
-    function applyVisibility() {
-      const vis = JSON.parse(localStorage.getItem('geo_visibility')) || {
-        hero: true, about: true, stats: true, skills: true, research: true, projects: true, certs: true
-      };
-
-      toggleElem('sec-view-hero', vis.hero);
-      toggleElem('about', vis.about);
-      toggleElem('nav-about', vis.about);
-      toggleElem('sec-view-stats', vis.stats);
-      toggleElem('skills', vis.skills);
-      toggleElem('nav-skills', vis.skills);
-      toggleElem('research', vis.research);
-      toggleElem('nav-research', vis.research);
-      toggleElem('projects', vis.projects);
-      toggleElem('nav-projects', vis.projects);
-      toggleElem('certifications', vis.certs);
-      toggleElem('nav-certs', vis.certs);
-    }
-
-    function toggleElem(id, visible) {
-      const el = document.getElementById(id);
-      if (el) el.style.display = (visible === false) ? 'none' : '';
-    }
-
-    function renderHero() {
-      const hero = JSON.parse(localStorage.getItem('geo_hero'));
-      if (hero) {
-        if (hero.title) document.getElementById('viewHeroTitle').innerText = hero.title;
-        if (hero.subtitle) document.getElementById('viewHeroSubtitle').innerText = hero.subtitle;
-      }
-    }
-
-    function renderAbout() {
-      const about = JSON.parse(localStorage.getItem('geo_about'));
-      if (!about) return;
-      if (about.greeting) document.getElementById('viewGreeting').innerText = about.greeting;
-      if (about.university) document.getElementById('viewUniversity').innerText = about.university;
-      if (about.specialty) document.getElementById('viewSpecialty').innerText = about.specialty;
-      if (about.country) document.getElementById('viewCountry').innerText = about.country;
-      if (about.languages) document.getElementById('viewLanguages').innerText = about.languages;
-      if (about.aboutDesc) document.getElementById('viewAboutDesc').innerText = about.aboutDesc;
-
-      if (about.github) document.getElementById('viewGithub').href = about.github;
-      if (about.linkedin) document.getElementById('viewLinkedin').href = about.linkedin;
-      if (about.cv) document.getElementById('viewCvBtn').href = about.cv;
-
-      if (about.img) {
-        document.getElementById('viewImgContainer').innerHTML = `<img src="${about.img}" alt="Profile Image">`;
-      }
-    }
-
     function renderStats() {
-      const defaultStats = [
+      const stats = [
         { label: 'University Level', value: '3rd Year' },
         { label: 'GIS Projects', value: '12+' },
         { label: 'Certifications', value: '5+' },
         { label: 'Tech Tools', value: '8+' }
       ];
-      const stats = JSON.parse(localStorage.getItem('geo_stats_list')) || defaultStats;
       const container = document.getElementById('sec-view-stats');
-      if (stats.length === 0) {
-        container.style.display = 'none';
-        return;
-      }
       container.innerHTML = stats.map(s => `
         <div class="stat-box">
           <h2>${s.value}</h2>
@@ -495,159 +381,53 @@
       `).join('');
     }
 
-    /* Updated renderSkills to handle QGIS and Specific Tech Icons automatically */
     function renderSkills() {
-      const skills = JSON.parse(localStorage.getItem('geo_skills')) || [];
+      // يقرأ من localStorage أو يعود للبيانات الافتراضية
+      const skills = JSON.parse(localStorage.getItem('geo_skills')) || defaultSkills;
       const grid = document.getElementById('viewSkillsGrid');
-      if (skills.length === 0) {
-        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-gray);">No skills added yet.</p>`;
-        return;
-      }
+      
       grid.innerHTML = skills.map(s => {
         let iconHTML = `<i class="${categoryIcons[s.category] || 'fa-solid fa-code'}"></i>`;
+        const nameLower = (s.name || '').toLowerCase();
         
-        const skillNameLower = (s.name || '').toLowerCase().trim();
-        
-        // Smart matching for QGIS and specific software tools
-        if (skillNameLower === 'qgis') {
-          iconHTML = `<i class="devicon-qgis-plain colored"></i>`;
-        } else if (skillNameLower.includes('python')) {
-          iconHTML = `<i class="devicon-python-plain colored"></i>`;
-        } else if (skillNameLower.includes('postgresql') || skillNameLower.includes('postgis')) {
-          iconHTML = `<i class="devicon-postgresql-plain colored"></i>`;
-        }
+        if (nameLower.includes('qgis')) iconHTML = `<i class="devicon-qgis-plain colored"></i>`;
+        else if (nameLower.includes('python')) iconHTML = `<i class="devicon-python-plain colored"></i>`;
+        else if (nameLower.includes('postgres')) iconHTML = `<i class="devicon-postgresql-plain colored"></i>`;
 
-        const labelText = categoryLabels[s.category] || s.category;
         return `
           <div class="geo-card">
             <div class="card-icon">${iconHTML}</div>
             <h3 class="card-title">${s.name}</h3>
-            <span class="card-tag">${labelText}</span>
+            <span class="card-tag">${categoryLabels[s.category] || s.category}</span>
           </div>
         `;
       }).join('');
     }
 
     function renderResearch() {
-      const items = JSON.parse(localStorage.getItem('geo_research')) || [];
+      const items = JSON.parse(localStorage.getItem('geo_research')) || defaultResearch;
       const grid = document.getElementById('viewResearchGrid');
-      if (items.length === 0) {
-        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-gray);">No research projects added yet.</p>`;
-        return;
-      }
-      grid.innerHTML = items.map((r, i) => `
-        <div class="geo-card" style="cursor:pointer;" onclick="openResearchModal(${i})">
+      grid.innerHTML = items.map(r => `
+        <div class="geo-card">
           <div class="card-icon"><i class="fa-solid fa-microscope"></i></div>
           <h3 class="card-title">${r.title}</h3>
-          <p class="card-desc">${r.abstract ? (r.abstract.substring(0, 100) + '...') : ''}</p>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-            <span class="card-tag"><i class="fa-solid fa-wrench"></i> ${r.tools || 'Research'}</span>
-            <span style="color:var(--primary-cyan); font-weight:700; font-size:0.85rem;">Learn more <i class="fa-solid fa-arrow-right"></i></span>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function openResearchModal(index) {
-      const items = JSON.parse(localStorage.getItem('geo_research')) || [];
-      const item = items[index];
-      if (!item) return;
-
-      document.getElementById('rModalTitle').innerText = item.title;
-      document.getElementById('rModalTools').innerHTML = `<i class="fa-solid fa-wrench"></i> ${item.tools || 'General Research'}`;
-      document.getElementById('rModalAbstract').innerText = item.abstract || 'No abstract provided.';
-      
-      const linkContainer = document.getElementById('rModalLinkBtn');
-      if (item.link) {
-        linkContainer.innerHTML = `<a href="${item.link}" target="_blank" class="btn btn-primary" style="width:100%; justify-content:center;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Read Full Paper / Article</a>`;
-      } else {
-        linkContainer.innerHTML = '';
-      }
-
-      document.getElementById('researchModal').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeResearchModal(event) {
-      document.getElementById('researchModal').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    function renderProjects() {
-      const projects = JSON.parse(localStorage.getItem('geo_projects')) || [];
-      const grid = document.getElementById('viewProjectsGrid');
-      if (projects.length === 0) {
-        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-gray);">No practical projects added yet.</p>`;
-        return;
-      }
-      grid.innerHTML = projects.map(p => `
-        <div class="geo-card">
-          <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-          <h3 class="card-title">${p.title}</h3>
-          <p class="card-desc">${p.desc}</p>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-            <span class="card-tag">${p.tag}</span>
-            ${p.link ? `<a href="${p.link}" target="_blank" style="color:var(--primary-cyan); font-weight:700; text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Learn more</a>` : ''}
-          </div>
+          <p class="card-desc">${r.abstract}</p>
+          <span class="card-tag"><i class="fa-solid fa-wrench"></i> ${r.tools}</span>
         </div>
       `).join('');
     }
 
     function renderCerts() {
-      const certs = JSON.parse(localStorage.getItem('geo_certs')) || [];
+      const certs = JSON.parse(localStorage.getItem('geo_certs')) || defaultCerts;
       const grid = document.getElementById('viewCertsGrid');
-      if (certs.length === 0) {
-        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-gray);">No certifications added yet.</p>`;
-        return;
-      }
       grid.innerHTML = certs.map(c => `
-        <div class="geo-card" style="padding: 20px;">
-          ${c.imgPath 
-            ? `<div class="cert-img-wrapper" onclick="openCertModal('${c.imgPath}', '${c.title.replace(/'/g, "\\'")}')">
-                 <img src="${c.imgPath}" alt="${c.title}">
-                 <div class="cert-img-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-               </div>`
-            : `<div class="card-icon"><i class="fa-solid fa-certificate"></i></div>`
-          }
-          <h3 class="card-title" style="margin-bottom:6px;">${c.title}</h3>
-          <p style="color:var(--primary-cyan); font-weight:700; font-size:0.95rem; margin-bottom:6px;">
-            <i class="fa-solid fa-award"></i> ${c.issuer}
-          </p>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-            ${c.date ? `<span style="font-size:0.85rem; color:var(--text-gray);"><i class="fa-regular fa-calendar"></i> ${c.date}</span>` : '<span></span>'}
-            ${c.link ? `<a href="${c.link}" target="_blank" style="color:var(--primary-cyan); font-weight:700; font-size:0.85rem; text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Learn more</a>` : ''}
-          </div>
+        <div class="geo-card">
+          <div class="card-icon"><i class="fa-solid fa-certificate"></i></div>
+          <h3 class="card-title">${c.title}</h3>
+          <p style="color:var(--primary-cyan); font-weight:700;">${c.issuer}</p>
+          <span style="font-size:0.85rem; color:var(--text-gray);">${c.date || ''}</span>
         </div>
       `).join('');
-    }
-
-    function openCertModal(imgSrc, title) {
-      document.getElementById('certModalImg').src = imgSrc;
-      document.getElementById('certModalTitle').innerText = title;
-      document.getElementById('certModal').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeCertModal(event) {
-      document.getElementById('certModal').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeCertModal();
-        closeResearchModal();
-      }
-    });
-
-    function renderContact() {
-      const about = JSON.parse(localStorage.getItem('geo_about')) || {};
-      const contact = JSON.parse(localStorage.getItem('geo_contact')) || {};
-
-      if (about.email) document.getElementById('viewContactEmail').innerText = about.email;
-      if (contact.phone) document.getElementById('viewContactPhone').innerText = contact.phone;
-      if (contact.location) document.getElementById('viewContactLocation').innerText = contact.location;
-      if (contact.text) document.getElementById('viewContactText').innerText = contact.text;
     }
   </script>
 </body>

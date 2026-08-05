@@ -144,42 +144,27 @@
     .card-desc { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; flex: 1; }
     .card-tag { align-self: flex-start; background: var(--bg-light); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: var(--primary-cyan); }
 
-    /* Modals for Lightbox Views */
-    .custom-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(5px);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .custom-modal-content {
-      position: relative;
-      max-width: 650px;
-      width: 90%;
-      max-height: 90vh;
+    /* Certifications Specific UI */
+    .cert-card {
       background: white;
-      padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
     }
 
-    .custom-modal-close {
-      position: absolute;
-      top: 15px; right: 15px;
-      background: #f1f5f9; color: var(--text-dark);
-      width: 32px; height: 32px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-    }
+    .cert-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+    .cert-img-wrapper { width: 100%; height: 180px; background-color: #f1f5f9; border-bottom: 1px solid var(--border-color); overflow: hidden; }
+    .cert-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+    .cert-card:hover .cert-img-wrapper img { transform: scale(1.05); }
+    .cert-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+    .cert-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }
+    .cert-issuer { color: var(--primary-cyan); font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+    .cert-date { font-size: 0.8rem; color: var(--text-gray); margin-bottom: 15px; }
+    .cert-link-btn { margin-top: auto; align-self: flex-start; font-size: 0.85rem; padding: 8px 16px; }
 
     .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; }
     .contact-info-list { display: flex; flex-direction: column; gap: 20px; }
@@ -228,7 +213,6 @@
     <h2 class="section-title">About Me</h2>
     <div class="about-card">
       <div class="about-img-container" id="viewImgContainer">
-  <!-- ضع اسم صورتك الموجودة داخل مجلد assets -->
         <img src="assets/profile.jpg" alt="Profile" onerror="this.src='https://via.placeholder.com/280x320?text=Profile+Image'">
       </div>
       <div class="about-content">
@@ -242,7 +226,7 @@
         <p class="card-desc" id="viewAboutDesc">Passionate about geospatial analysis, remote sensing, and spatial web tools.</p>
         <div class="about-buttons">
           <a href="assets/cv.pdf" id="viewCvBtn" class="btn btn-primary" download><i class="fa-solid fa-download"></i> Download CV</a>
-          <a href="https://github.com" id="viewGithub" class="btn btn-outline" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="https://github.com/mohamedrezouq55-debug" id="viewGithub" class="btn btn-outline" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
           <a href="https://linkedin.com" id="viewLinkedin" class="btn btn-outline" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
         </div>
       </div>
@@ -269,7 +253,6 @@
     <div class="grid-container" id="viewCertsGrid"></div>
   </section>
 
-  <!-- CONTACT SECTION -->
   <section id="contact">
     <h2 class="section-title">Get In Touch</h2>
     <div class="contact-container">
@@ -313,7 +296,6 @@
   </footer>
 
   <script>
-    // 1. القواعد والبيانات الافتراضية الثابتة المخزنة داخل الكود ليراها أي زائر من أي جهاز
     const defaultSkills = [
       { name: 'ArcGIS Pro', category: 'gis' },
       { name: 'Python (Pandas & GeoPandas)', category: 'programming' },
@@ -328,26 +310,23 @@
         title: 'Spatial Analysis of Population Density & Nighttime Lights in Casablanca',
         abstract: 'Undergraduate thesis evaluating district-level electrification patterns, land use dynamics, and demographic changes using satellite observations.',
         tools: 'QGIS • Python • Remote Sensing'
-      }
-    ];
-
-        const defaultResearch = [
+      },
       {
         title: 'Population Density',
-        abstract: 'The graduate program develops you into a researcher. Coursework is no longer the primary focus, and you learn how to create, plan, and carry out independent research. On-campus students are admitted to this program..',
+        abstract: 'The graduate program develops you into a researcher. Coursework is no longer the primary focus, and you learn how to create, plan, and carry out independent research.',
         tools: 'SAS Planet • Python • ArcMap'
       }
     ];
 
-const defaultCerts = [
-  {
-    title: 'GIS Specialization Certificate',
-    issuer: 'Esri / University Partner',
-    date: '2025',
-    imgPath: 'assets/cert1.jpg',
-    certUrl: 'https://images.bannerbear.com/direct/4mGpW3zwrxA1K0AxQw/requests/000/155/811/749/aMBJ5DWdLYPXORpRYXRNjrp4Z/21ed8968568722387764f385fa270b80e0d2b94e.pdf' // يمكن وضع مسار الصورة نفسه لفتحها بشكل مكبر، أو وضع رابط خارجي (مثل Credly أو Coursera)
-  }
-];
+    const defaultCerts = [
+      {
+        title: 'GIS Specialization Certificate',
+        issuer: 'Esri / University Partner',
+        date: '2025',
+        imgPath: 'assets/cert1.jpg',
+        certUrl: 'https://images.bannerbear.com/direct/4mGpW3zwrxA1K0AxQw/requests/000/155/811/749/aMBJ5DWdLYPXORpRYXRNjrp4Z/21ed8968568722387764f385fa270b80e0d2b94e.pdf'
+      }
+    ];
 
     const categoryIcons = {
       'gis': 'fa-solid fa-earth-americas',
@@ -391,11 +370,8 @@ const defaultCerts = [
     }
 
     function renderSkills() {
-      // يقرأ من localStorage أو يعود للبيانات الافتراضية
-      const skills = JSON.parse(localStorage.getItem('geo_skills')) || defaultSkills;
       const grid = document.getElementById('viewSkillsGrid');
-      
-      grid.innerHTML = skills.map(s => {
+      grid.innerHTML = defaultSkills.map(s => {
         let iconHTML = `<i class="${categoryIcons[s.category] || 'fa-solid fa-code'}"></i>`;
         const nameLower = (s.name || '').toLowerCase();
         
@@ -414,9 +390,8 @@ const defaultCerts = [
     }
 
     function renderResearch() {
-      const items = JSON.parse(localStorage.getItem('geo_research')) || defaultResearch;
       const grid = document.getElementById('viewResearchGrid');
-      grid.innerHTML = items.map(r => `
+      grid.innerHTML = defaultResearch.map(r => `
         <div class="geo-card">
           <div class="card-icon"><i class="fa-solid fa-microscope"></i></div>
           <h3 class="card-title">${r.title}</h3>
@@ -427,14 +402,20 @@ const defaultCerts = [
     }
 
     function renderCerts() {
-      const certs = JSON.parse(localStorage.getItem('geo_certs')) || defaultCerts;
       const grid = document.getElementById('viewCertsGrid');
-      grid.innerHTML = certs.map(c => `
-        <div class="geo-card">
-          <div class="card-icon"><i class="fa-solid fa-certificate"></i></div>
-          <h3 class="card-title">${c.title}</h3>
-          <p style="color:var(--primary-cyan); font-weight:700;">${c.issuer}</p>
-          <span style="font-size:0.85rem; color:var(--text-gray);">${c.date || ''}</span>
+      grid.innerHTML = defaultCerts.map(c => `
+        <div class="cert-card">
+          <div class="cert-img-wrapper">
+            <img src="${c.imgPath}" alt="${c.title}" onerror="this.src='https://via.placeholder.com/400x250?text=Certificate+Image'">
+          </div>
+          <div class="cert-body">
+            <h3 class="cert-title">${c.title}</h3>
+            <p class="cert-issuer">${c.issuer}</p>
+            <span class="cert-date"><i class="fa-regular fa-calendar-days"></i> ${c.date || ''}</span>
+            <a href="${c.certUrl || c.imgPath}" target="_blank" class="btn btn-outline cert-link-btn">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate
+            </a>
+          </div>
         </div>
       `).join('');
     }

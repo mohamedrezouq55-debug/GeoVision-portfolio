@@ -319,6 +319,26 @@
         link: 'https://docs.google.com/document/d/e/2PACX-1vSzfyfe2fIuhVWoWtZ8uwBd62NaDadg7fAYA8j1h6Nx42t8y9MUo02HEbAhXUWgW2poGGNcUrEpHyg_/pub'
       }
     ];
+    // 2. تحديث دالة العرض لتشمل زر "View Article / Read Paper"
+  function renderResearch() {
+    const grid = document.getElementById('viewResearchGrid');
+    if (!grid) return;
+    grid.innerHTML = defaultResearch.map(r => `
+      <div class="geo-card" style="display: flex; flex-direction: column;">
+        <div class="card-icon"><i class="fa-solid fa-microscope"></i></div>
+        <h3 class="card-title">${r.title}</h3>
+        <p class="card-desc">${r.abstract}</p>
+        <span class="card-tag" style="margin-bottom: 15px;"><i class="fa-solid fa-wrench"></i> ${r.tools}</span>
+        
+        <!-- زر فتح المقال/البحث -->
+        ${r.link ? `
+          <a href="${r.link}" target="_blank" class="btn btn-outline" style="margin-top: auto; align-self: flex-start; font-size: 0.85rem; padding: 6px 14px;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Article
+          </a>
+        ` : ''}
+      </div>
+    `).join('');
+  }
 
     const defaultCerts = [
       {
